@@ -46,12 +46,8 @@ class Server:
         '''
         Retrieve a specific page of data.
         '''
-        assert (
-            type(page) is int and page > 0,
-            f"Expected page to be an int > 0")
-        assert (
-            type(page_size) is int and page_size > 0,
-            f"Expected page_size to be an int > 0")
+        assert type(page) is int and page > 0
+        assert type(page_size) is int and page_size > 0
         data_set = self.dataset()
         total_set_size = len(data_set) / page_size
 
