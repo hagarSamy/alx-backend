@@ -44,13 +44,16 @@ class Server:
         indexed_data = self.indexed_dataset()
         set_len = len(indexed_data)
         assert index < set_len
-        index = next((i for i, item in enumerate(indexed_data) if item > index), None)
         data = []
+        current_index = index
         if index is not None:
-            for j in range(index, index + page_size):
-                data.append(indexed_data[index])
+            for _ in range(page_size):
+                if current_index >= set_len:
+                    break
+                data.append(indexed_data[current_index])
+                current_index += 1
 
-        next_index = data[-1] if data else None
+        next_index = current_index if current_index < set_len else None
         return {
             'index': index, 'data': data,
             'page_size': len(data), 'next_index': next_index
