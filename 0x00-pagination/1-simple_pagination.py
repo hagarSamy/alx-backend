@@ -41,17 +41,16 @@ class Server:
 
         return self.__dataset
 
-    def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+    def get_page(self, page:int = 1, page_size:int = 10) -> List[List]:
         '''
         Retrieve a specific page of data.
         '''
-        if not isinstance(page, int) or not isinstance(page_size, int):
-            raise TypeError('Page and page_size must be integers.')
-        assert page > 0, f"Expected page to be > 0" 
-        assert page_size > 0, f"Expected page_size to be > 0" 
+        assert type(page) is int and page > 0, f"Expected page to be an int > 0" 
+        assert page_size > 0, f"Expected page_size to be an int > 0" 
         n_index_range = index_range(page=page, page_size=page_size)
         try:
             page_data = self.dataset()[n_index_range[0]: n_index_range[1]]
+            return page_data
         except IndexError:
             logging.error("Failed to retrieve the specified page.")
         return []
