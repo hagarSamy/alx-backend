@@ -46,11 +46,11 @@ class Server:
         Retrieve a specific page of data.
         '''
         assert type(page) is int and page > 0, f"Expected page to be an int > 0" 
-        assert page_size > 0, f"Expected page_size to be an int > 0" 
+        assert type(page_size) is int and page_size > 0, f"Expected page_size to be an int > 0" 
+        data_set = self.dataset()
+        total_set_size = len(data_set) / page_size
+
         n_index_range = index_range(page=page, page_size=page_size)
-        try:
-            page_data = self.dataset()[n_index_range[0]: n_index_range[1]]
-            return page_data
-        except IndexError:
-            logging.error("Failed to retrieve the specified page.")
-        return []
+        if page > total_set_size:
+            return []
+        return data_set[n_index_range[0]: n_index_range[1]]
