@@ -31,6 +31,4 @@ class LFUCache(BaseCaching):
         '''retrieving a value by the key'''
         if key in self.store:
             self.store[key] += 1
-        else:
-            self.store[key] = 0
         return self.cache_data.get(key)
