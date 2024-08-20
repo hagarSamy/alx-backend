@@ -19,7 +19,7 @@ class LRUCache(BaseCaching):
         ''' setting a value to the key of the cache dict'''
         if key and item:
             if len(self.cache_data) == BaseCaching.MAX_ITEMS:
-                lru_key = next(self.cache_data)
+                lru_key = next(iter(self.cache_data))
                 del self.cache_data[lru_key]
                 if key != lru_key:
                     print(f'DISCARD: {lru_key}')
