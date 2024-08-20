@@ -26,6 +26,7 @@ class FIFOCache(BaseCaching):
 
     def get(self, key):
         '''retrieving a value by the key'''
+        #  return self.cache_data.get('key')
         try:
             result = self.cache_data[key]
         except KeyError:
