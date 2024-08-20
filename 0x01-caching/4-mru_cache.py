@@ -20,7 +20,8 @@ class MRUCache(BaseCaching):
         if key and item:
             if len(self.cache_data) == BaseCaching.MAX_ITEMS:
                 mru_key, value = self.cache_data.popitem()
-                print(f'DISCARD: {mru_key}')
+                if key != mru_key:
+                    print(f'DISCARD: {mru_key}')
             self.cache_data[key] = item
 
     def get(self, key):
