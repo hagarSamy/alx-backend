@@ -45,9 +45,12 @@ class Server:
         set_len = len(indexed_data)
         assert index < set_len
         data = []
-        for _ in range(page_size):
-            data.append(indexed_data[index])
-            index += 1
+        if index is not None:
+            for _ in range(page_size):
+                if index >= set_len:
+                    break
+                data.append(indexed_data[index])
+                index += 1
 
         next_index = index if index < set_len else None
         return {
