@@ -31,4 +31,3 @@ class FIFOCache(BaseCaching):
         except KeyError:
             return None
         return result
-        
