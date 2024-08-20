@@ -40,7 +40,7 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
-        ''''''
+        '''hypermedia func that handles deletion'''
         indexed_data = self.indexed_dataset()
         set_len = len(indexed_data)
         assert index < set_len
