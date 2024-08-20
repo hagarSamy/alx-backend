@@ -20,7 +20,6 @@ class MRUCache(BaseCaching):
         if key and item:
             if len(self.cache_data) == BaseCaching.MAX_ITEMS:
                 mru_key, value = self.cache_data.popitem()
-                del self.cache_data[mru_key]
                 print(f'DISCARD: {mru_key}')
             self.cache_data[key] = item
 
