@@ -18,8 +18,9 @@ class BasicCache(BaseCaching):
         '''
         retrieving a value by the key
         '''
-        try:
-            result = self.cache_data[key]
-        except KeyError:
-            return None
-        return result
+        if key is not None:
+            try:
+                result = self.cache_data[key]
+            except KeyError:
+                return None
+            return result
