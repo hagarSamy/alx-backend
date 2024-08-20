@@ -21,7 +21,8 @@ class LRUCache(BaseCaching):
             if len(self.cache_data) == BaseCaching.MAX_ITEMS:
                 lru_key = next(iter(self.cache_data))
                 del self.cache_data[lru_key]
-                print(f'DISCARD: {lru_key}')
+                if key != lru_key:
+                    print(f'DISCARD: {lru_key}')
             self.cache_data[key] = item
 
     def get(self, key):
