@@ -12,15 +12,15 @@ class BasicCache(BaseCaching):
     '''
     def put(self, key, item):
         '''setting a value to the key of the cache dict'''
-        self.cache_data[key] = item
+        if key and item:
+            self.cache_data[key] = item
 
     def get(self, key):
         '''
         retrieving a value by the key
         '''
-        if key is not None:
-            try:
-                result = self.cache_data[key]
-            except KeyError:
-                return None
-            return result
+        try:
+            result = self.cache_data[key]
+        except KeyError:
+            return None
+        return result
