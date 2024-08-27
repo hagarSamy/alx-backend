@@ -81,7 +81,6 @@ def get_timezone() -> str:
 @app.route('/')
 def index() -> str:
     """renders html page"""
-    timezone = pytz.timezone(get_timezone())
     current_time = datetime.datetime.now()
     formatted_time = format_datetime(current_time, format='medium')
     return render_template('index.html', current_time=formatted_time)
