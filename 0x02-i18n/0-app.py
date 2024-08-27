@@ -1,7 +1,17 @@
 #!/usr/bin/python3
-""" simple Flask Application """
+""" Basic Flask Application """
 
-from flask import Flask
+from flask import Flask, render_template
 
 
 app = Flask(__name__)
+
+
+@app.route('/')
+def index():
+    """renders a simple page"""
+    return render_template('0-index.html')
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
