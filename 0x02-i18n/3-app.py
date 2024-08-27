@@ -25,7 +25,7 @@ def get_locale():
     '''determines the best locale (language) to use for a given request'''
     # Get locale from query parameter
     locale = request.args.get('lang')
-    if locale in app.config['LANGUAGES']:
+    if locale:
         return locale
     # Get locale from user settings
     return request.accept_languages.best_match(app.config['LANGUAGES'])
