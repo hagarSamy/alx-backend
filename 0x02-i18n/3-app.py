@@ -21,7 +21,7 @@ babel = Babel(app)
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
     '''determines the best locale (language) to use for a given request'''
     # Get locale from query parameter
     locale = request.args.get('lang')
@@ -32,7 +32,7 @@ def get_locale():
 
 
 @app.route('/')
-def index():
+def index() -> str:
     """renders a simple page"""
     return render_template('3-index.html')
 
