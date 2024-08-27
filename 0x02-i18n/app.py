@@ -2,8 +2,9 @@
 """ Basic Flask Application """
 
 from flask import Flask, render_template, request, g
-from flask_babel import Babel
+from flask_babel import Babel, format_datetime
 import pytz
+import datetime
 
 
 app = Flask(__name__)
@@ -80,7 +81,10 @@ def get_timezone() -> str:
 @app.route('/')
 def index() -> str:
     """renders html page"""
-    return render_template('index.html')
+    timezone = pytz.timezone(get_timezone())
+    current_time = datetime.datetime.now()
+    formatted_time = format_datetime(current_time, format='medium')
+    return render_template('index.html', current_time=formatted_time)
 
 
 if __name__ == '__main__':
