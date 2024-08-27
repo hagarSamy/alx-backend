@@ -9,15 +9,6 @@ app = Flask(__name__)
 babel = Babel(app)
 
 
-# mock user table
-users = {
-    1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
-    2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
-    3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
-    4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
-}
-
-
 class Config:
     '''configure available languages in our app'''
     LANGUAGES = ["en", "fr"]
@@ -30,14 +21,23 @@ app.config.from_object(Config)
 
 
 @babel.localeselector
-def get_locale() -> str:
+def get_locale():
     '''determines the best locale (language) to use for a given request'''
-    # detects if the incoming request contains locale argument 
+    # detects if the incoming request contains locale argument
     locale = request.args.get('locale')
     if locale in app.config['LANGUAGES']:
         return locale
     # Get locale from user settings
     return request.accept_languages.best_match(app.config['LANGUAGES'])
+
+
+# mock user table
+users = {
+    1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
+    2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
+    3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
+    4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
+}
 
 
 def get_user(user_id):
@@ -51,8 +51,8 @@ def before_request():
     '''use get_user to find a user if any,
     and set it as a global on flask.g.user'''
     user_id = request.args.get('login_as')
-    user = get_user(user_id)
-    if user is not None:
+    if user_id:
+        user = get_user(int(user_id))
         g.user = user
 
 
