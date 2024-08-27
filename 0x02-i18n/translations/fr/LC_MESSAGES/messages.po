@@ -24,4 +24,4 @@ msgstr "Bienvenue chez Holberton"
 
 #: templates/3-index.html:9
 msgid "Hello world"
-msgstr ""Bonjour monde!"
+msgstr "Bonjour monde!"
