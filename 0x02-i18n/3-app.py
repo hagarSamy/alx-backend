@@ -7,8 +7,6 @@ from flask_babel import Babel
 
 app = Flask(__name__)
 
-babel = Babel(app)
-
 
 class Config:
     '''configure available languages in our app'''
@@ -19,6 +17,7 @@ class Config:
 
 
 app.config.from_object(Config)
+babel = Babel(app)
 
 
 @babel.localeselector
