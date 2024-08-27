@@ -6,6 +6,7 @@ from flask_babel import Babel
 
 
 app = Flask(__name__)
+babel = Babel(app)
 
 
 # mock user table
@@ -26,7 +27,6 @@ class Config:
 
 
 app.config.from_object(Config)
-babel = Babel(app)
 
 
 @babel.localeselector
