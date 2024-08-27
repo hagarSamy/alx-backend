@@ -29,7 +29,8 @@ def get_locale():
         return locale
     # Get locale from user settings
     return request.accept_languages.best_match(app.config['LANGUAGES'])
-    
+
+
 # mock user table
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
@@ -58,7 +59,7 @@ def before_request():
 @app.route('/')
 def index() -> str:
     """renders html page"""
-    return render_template('6-index.html')
+    return render_template('5-index.html')
 
 
 if __name__ == '__main__':
