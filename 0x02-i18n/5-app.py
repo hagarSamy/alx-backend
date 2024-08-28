@@ -29,7 +29,8 @@ def get_locale():
         return locale
     # Get locale from user settings
     return request.accept_languages.best_match(app.config['LANGUAGES'])
-    
+
+
 # mock user table
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
